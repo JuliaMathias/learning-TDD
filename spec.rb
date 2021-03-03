@@ -39,18 +39,18 @@ class Person
   
   RSpec.describe Person do
     describe "#full_name" do
-      it "concatenates first name, middle name, and last name with spaces" do
-        amanda = Person.new(first_name: "Amanda", middle_name: "Marie", last_name: "Sinclair")
+        it "concatenates first name, middle name, and last name with spaces" do
+            amanda = Person.new(first_name: "Amanda", middle_name: "Marie", last_name: "Sinclair")
 
-        expect(amanda.full_name).to eq("Amanda Marie Sinclair")
-      end
-      
+            expect(amanda.full_name).to eq("Amanda Marie Sinclair")
+        end
+        
 
-      it "does not add extra spaces if middle name is missing" do
-        julie = Person.new(first_name: "Julie", last_name: "Andrews")
+        it "does not add extra spaces if middle name is missing" do
+            julie = Person.new(first_name: "Julie", last_name: "Andrews")
 
-        expect(julie.full_name).to eq("Julie Andrews")
-      end
+            expect(julie.full_name).to eq("Julie Andrews")
+        end
     end
   
     describe "#full_name_with_middle_initial" do
@@ -61,12 +61,25 @@ class Person
           end
           
     
-          it "does not add extra spaces or a period if middle name is missing" do
+        it "does not add extra spaces or a period if middle name is missing" do
             julie = Person.new(first_name: "Julie", last_name: "Andrews")
-    
+
             expect(julie.full_name_with_middle_initial).to eq("Julie Andrews")
-          end
+        end
     end 
   
-    # describe "#initials"
+    describe "#initials" do
+        it "concatenates first name, middle name initials, and last name with spaces" do
+            amanda = Person.new(first_name: "Amanda", middle_name: "Marie", last_name: "Sinclair")
+    
+            expect(amanda.full_name_with_middle_initial).to eq("Amanda M. Sinclair")
+        end
+          
+    
+        it "does not add extra spaces or a period if middle name is missing" do
+            julie = Person.new(first_name: "Julie", last_name: "Andrews")
+
+            expect(julie.full_name_with_middle_initial).to eq("Julie Andrews")
+        end
+    end
   end
