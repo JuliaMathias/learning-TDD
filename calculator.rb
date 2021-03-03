@@ -5,7 +5,7 @@ require "rspec/autorun"
 
 class Calculator
     def add(a, b)
-       15 
+       a + b 
     end
 end
 
@@ -16,9 +16,11 @@ describe Calculator do
   
         expect(calculator.add(5, 10)).to eq(15)
       end
+
       it "returns the sums of two different arguments" do
-        calc = Calculator.new
-        expect(calc.add(1,2)) to eq(3)
+        calculator = Calculator.new
+
+        expect(calculator.add(1,2)).to eq(3)
       end
     end
   end
