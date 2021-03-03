@@ -35,6 +35,14 @@ class Person
             "#{@first_name} #{@middle_name[0]}. #{@last_name}"
         end
     end
+
+    def initials
+        if @middle_name == nil
+            "#{@first_name[0]}. #{@last_name[0]}."
+        else
+            "#{@first_name[0]}. #{@middle_name[0]}. #{@last_name[0]}."
+        end
+    end
   end
   
   RSpec.describe Person do
