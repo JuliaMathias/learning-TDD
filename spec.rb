@@ -58,7 +58,7 @@ class Person
     
             expect(julie.full_name_with_middle_initial).to eq("Julie Andrews")
           end
-    end
+    end 
   
     # describe "#initials"
   end
