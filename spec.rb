@@ -45,7 +45,20 @@ class Person
       end
     end
   
-    # describe "#full_name_with_middle_initial"
+    describe "#full_name_with_middle_initial" do
+        it "concatenates first name, middle name initials, and last name with spaces" do
+            amanda = Person.new(first_name: "Amanda", middle_name: "Marie", last_name: "Sinclair")
+    
+            expect(amanda.full_name_with_middle_initial).to eq("Amanda Marie Sinclair")
+          end
+          
+    
+          it "does not add extra spaces or a period if middle name is missing" do
+            julie = Person.new(first_name: "Julie", last_name: "Andrews")
+    
+            expect(julie.full_name_with_middle_initial).to eq("Julie Andrews")
+          end
+    end
   
     # describe "#initials"
   end
