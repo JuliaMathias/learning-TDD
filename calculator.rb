@@ -1,8 +1,5 @@
 require "rspec/autorun"
 
-# calc = Calculator.new
-# calc.add(5, 10)
-
 class Calculator
     def add(a, b)
         a + b 
@@ -12,7 +9,7 @@ class Calculator
         if n == 0
             1
         else 
-            (1..n).reduce(:*)
+            (1..n).reduce(:*) 
         end
     end
 end
