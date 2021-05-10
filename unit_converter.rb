@@ -2,15 +2,18 @@ require "rspec/autorun"
 
 DimensionalMismatchError = Class.new(StandardError)
 
+Quantity = Struct.new(:amount, :unit)
+
 class UnitConverter
-    def initialize(initial_amount, initial_unit, target_unit)
-        @initial_amount = initial_amount
-        @initial_unit = initial_unit
+    def initialize(initial_quantity, target_unit)
+        @initial_quantity = initial_quantity
         @target_unit = target_unit
     end
     
     def convert
-        @initial_amount * conversion_factor(from: @initial_unit, to: @target_unit)
+        Quantity.new(
+            @initial_quantity.amount * conversion_factor(from: @initial_quantity.unit, to: @target_unit), @target_unit
+        )
     end
     
     private
@@ -29,13 +32,17 @@ end
 describe UnitConverter do
     describe "#convert" do
         it "translates between objects of the same dimension" do
-            converter = UnitConverter.new(2, :cup, :liter)
+        cups = Quantity.new(2, :cup)
+        converter = UnitConverter.new(cups, :liter)
+        result = converter.convert
 
-            expect(converter.convert).to be_within(0.001).of(0.473)
+            expect(result.amount).to be_within(0.001).of(0.473)
+            expect(result.unit).to eq(:liter)
         end
 
         it "raises an error if the two quantities are of differing dimensions" do
-            converter = UnitConverter.new(2, :cup, :gram)
+            cups = Quantity.new(2, :cup)
+            converter = UnitConverter.new(cups, :gram)
 
             expect { converter.convert }.to raise_error(DimensionalMismatchError)
         end
